@@ -43,5 +43,43 @@ class LinkedList:
     return False
 
   def reverse_list(self):
-    # TO BE COMPLETED
-    pass
+    
+    current = self.head
+    # next and prev variables to keep track of current location
+    next = None
+    prev = None
+
+    if current is None:
+        return
+
+    else:
+        while current is not None:
+    
+            next = current.get_next()
+    
+            # reversing the nodes pointer from pointing forward to point to the previous element
+            current.set_next(prev)
+    
+            # once pointers have been flipped update our 'prev' variable with 'current' node for next iteration
+            prev = current
+            
+            # updating the 'current' variable with the 'next' node for next iteration
+            current = next
+    
+        # updating the head of the linked list
+        self.head = prev
+    
+        # returning linked list
+        return self
+
+linked_list = LinkedList()
+
+linked_list.add_to_head(5)
+linked_list.add_to_head(10)
+linked_list.add_to_head(15)
+linked_list.add_to_head(20)
+
+print('b4 head', linked_list.head.next_node.value)
+reversed = linked_list.reverse_list()
+print(reversed.head.next_node.value)
+print('after head', linked_list.head.value)
