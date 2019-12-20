@@ -48,8 +48,10 @@ class LinkedList:
     # next and prev variables to keep track of current location
     next = None
     prev = None
-    if current.get_next() is None:
+
+    if current is None:
         return
+
     else:
         while current is not None:
     
