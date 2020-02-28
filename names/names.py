@@ -2,7 +2,6 @@ import time
 # from .binary_seach_tree import BinarySearchTree
 from binary_search_tree import BinarySearchTree
 
-start_time = time.time()
 
 f = open('names_1.txt', 'r')
 names_1 = f.read().split("\n")  # List containing 10000 names
@@ -14,6 +13,7 @@ f.close()
 
 
 
+start_time = time.time()
 
 
 tree = BinarySearchTree("JUST A PLACEHOLDER")
@@ -30,4 +30,20 @@ for item_two in names_2:
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
-print (f"runtime: {end_time - start_time} seconds")
+print (f"runtime_binary_tree: {end_time - start_time} seconds")
+
+
+start_time = time.time()
+
+duplicates_two = []
+
+names = set(names_1)
+
+for item_two in names_2:
+    if item_two in names:
+        duplicates_two.append(item_two)
+
+
+end_time = time.time()
+print (f"{len(duplicates_two)} duplicates:\n\n{', '.join(duplicates_two)}\n\n")
+print (f"runtime_python_set: {end_time - start_time} seconds")
