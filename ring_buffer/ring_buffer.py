@@ -8,18 +8,22 @@ class RingBuffer:
         self.storage = DoublyLinkedList()
 
     def append(self, item):
+        # if not full add to storage
         if self.storage.length < self.capacity:
             self.storage.add_to_tail(item)
         
         else:
+            # initial value override
             if self.current is None:
                 self.current = self.storage.head
 
             self.current.value = item
 
+            # setting up the next override to the next node
             if self.current.next:
                 self.current = self.current.next
             
+            # if there is not a next node set next override to the head
             else:
                 self.current = self.storage.head
 
