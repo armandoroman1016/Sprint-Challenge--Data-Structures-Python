@@ -1,6 +1,7 @@
 import time
+# from .binary_seach_tree import BinarySearchTree
+from binary_search_tree import BinarySearchTree
 
-start_time = time.time()
 
 f = open('names_1.txt', 'r')
 names_1 = f.read().split("\n")  # List containing 10000 names
@@ -10,17 +11,39 @@ f = open('names_2.txt', 'r')
 names_2 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
+
+
+start_time = time.time()
+
+
+tree = BinarySearchTree("JUST A PLACEHOLDER")
+
 duplicates = []
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+
+for item_one in names_1:
+    tree.insert(item_one)
+
+for item_two in names_2:
+    if tree.contains(item_two):
+        duplicates.append(item_two)
+
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
-print (f"runtime: {end_time - start_time} seconds")
+print (f"runtime_binary_tree: {end_time - start_time} seconds")
 
-# ---------- Stretch Goal -----------
-# Python has built-in tools that allow for a very efficient approach to this problem
-# What's the best time you can accomplish with no restrictions on techniques or data
-# structures?
+
+start_time = time.time()
+
+duplicates_two = []
+
+names = set(names_1)
+
+for item_two in names_2:
+    if item_two in names:
+        duplicates_two.append(item_two)
+
+
+end_time = time.time()
+print (f"{len(duplicates_two)} duplicates:\n\n{', '.join(duplicates_two)}\n\n")
+print (f"runtime_python_set: {end_time - start_time} seconds")
